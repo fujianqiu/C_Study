@@ -1,0 +1,17 @@
+﻿  stdafx.cpp
+  源.cpp
+f:\project\testforc\testforc\源.cpp(14): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  f:\project\testforc\testforc\源.cpp(14): note: 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
+  f:\project\testforc\testforc\源.cpp(14): note: 缺失的可变参数 1 为格式字符串“%d”所需
+f:\project\testforc\testforc\源.cpp(15): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  f:\project\testforc\testforc\源.cpp(15): note: 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
+  f:\project\testforc\testforc\源.cpp(15): note: 缺失的可变参数 1 为格式字符串“%d”所需
+f:\project\testforc\testforc\源.cpp(16): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  f:\project\testforc\testforc\源.cpp(16): note: 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
+  f:\project\testforc\testforc\源.cpp(16): note: 缺失的可变参数 1 为格式字符串“%d”所需
+f:\project\testforc\testforc\源.cpp(17): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  f:\project\testforc\testforc\源.cpp(17): note: 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
+  f:\project\testforc\testforc\源.cpp(17): note: 缺失的可变参数 1 为格式字符串“%d”所需
+  TestForC.cpp
+  正在生成代码...
+  TestForC.vcxproj -> F:\project\TestForC\Debug\TestForC.exe
