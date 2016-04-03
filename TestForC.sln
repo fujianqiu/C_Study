@@ -41,6 +41,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "address 2", "address 2\addr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adddress 3", "adddress 3\adddress 3.vcxproj", "{BE29FA34-B9F5-43FF-B2B7-07E510B58702}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "erwei 1", "erwei 1\erwei 1.vcxproj", "{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -201,6 +203,14 @@ Global
 		{BE29FA34-B9F5-43FF-B2B7-07E510B58702}.Release|x64.Build.0 = Release|x64
 		{BE29FA34-B9F5-43FF-B2B7-07E510B58702}.Release|x86.ActiveCfg = Release|Win32
 		{BE29FA34-B9F5-43FF-B2B7-07E510B58702}.Release|x86.Build.0 = Release|Win32
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Debug|x64.ActiveCfg = Debug|x64
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Debug|x64.Build.0 = Debug|x64
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Debug|x86.ActiveCfg = Debug|Win32
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Debug|x86.Build.0 = Debug|Win32
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Release|x64.ActiveCfg = Release|x64
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Release|x64.Build.0 = Release|x64
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Release|x86.ActiveCfg = Release|Win32
+		{62F23293-CB5C-4AF2-AEB9-ED18CF2D35E8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

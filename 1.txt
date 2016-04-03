@@ -1,0 +1,114 @@
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   .gitignore
+	modified:   .vs/TestForC/v14/.suo
+	modified:   Debug/chenfabiao4.exe
+	modified:   Debug/chenfabiao4.ilk
+	modified:   Debug/chenfabiao4.pdb
+	modified:   Debug/chengfabiao2.exe
+	modified:   Debug/chengfabiao2.ilk
+	modified:   Debug/chengfabiao2.pdb
+	modified:   TestForC.sdf
+	modified:   TestForC.sln
+	new file:   adddress 3/ReadMe.txt
+	new file:   adddress 3/adddress 3.cpp
+	new file:   adddress 3/adddress 3.vcxproj
+	new file:   adddress 3/adddress 3.vcxproj.filters
+	new file:   adddress 3/stdafx.cpp
+	new file:   adddress 3/stdafx.h
+	new file:   adddress 3/targetver.h
+	new file:   address 1/ReadMe.txt
+	new file:   address 1/address 1.cpp
+	new file:   address 1/address 1.vcxproj
+	new file:   address 1/address 1.vcxproj.filters
+	new file:   address 1/stdafx.cpp
+	new file:   address 1/stdafx.h
+	new file:   address 1/targetver.h
+	new file:   address 2/ReadMe.txt
+	new file:   address 2/address 2.cpp
+	new file:   address 2/address 2.vcxproj
+	new file:   address 2/address 2.vcxproj.filters
+	new file:   address 2/stdafx.cpp
+	new file:   address 2/stdafx.h
+	new file:   address 2/targetver.h
+	new file:   chenfabiao 5/ReadMe.txt
+	new file:   chenfabiao 5/chenfabiao 5.cpp
+	new file:   chenfabiao 5/chenfabiao 5.vcxproj
+	new file:   chenfabiao 5/chenfabiao 5.vcxproj.filters
+	new file:   chenfabiao 5/stdafx.cpp
+	new file:   chenfabiao 5/stdafx.h
+	new file:   chenfabiao 5/targetver.h
+	modified:   chenfabiao4/Debug/chenfabiao4.obj
+	modified:   chenfabiao4/Debug/chenfabiao4.tlog/CL.read.1.tlog
+	modified:   chenfabiao4/Debug/vc140.idb
+	modified:   chenfabiao4/Debug/vc140.pdb
+	modified:   chenfabiao4/chenfabiao4.cpp
+	modified:   chengfabiao 2/Debug/chengfabiao 2.obj
+	modified:   chengfabiao 2/Debug/vc140.idb
+	modified:   chengfabiao 2/Debug/vc140.pdb
+	new file:   continue 1/ReadMe.txt
+	new file:   continue 1/continue 1.cpp
+	new file:   continue 1/continue 1.vcxproj
+	new file:   continue 1/continue 1.vcxproj.filters
+	new file:   continue 1/stdafx.cpp
+	new file:   continue 1/stdafx.h
+	new file:   continue 1/targetver.h
+	new file:   for 1/ReadMe.txt
+	new file:   for 1/for 1.cpp
+	new file:   for 1/for 1.vcxproj
+	new file:   for 1/for 1.vcxproj.filters
+	new file:   for 1/stdafx.cpp
+	new file:   for 1/stdafx.h
+	new file:   for 1/targetver.h
+	new file:   for 2/ReadMe.txt
+	new file:   for 2/for 2.cpp
+	new file:   for 2/for 2.vcxproj
+	new file:   for 2/for 2.vcxproj.filters
+	new file:   for 2/stdafx.cpp
+	new file:   for 2/stdafx.h
+	new file:   for 2/targetver.h
+	new file:   if-eles 2/ReadMe.txt
+	new file:   if-eles 2/if-eles 2.cpp
+	new file:   if-eles 2/if-eles 2.vcxproj
+	new file:   if-eles 2/if-eles 2.vcxproj.filters
+	new file:   if-eles 2/stdafx.cpp
+	new file:   if-eles 2/stdafx.h
+	new file:   if-eles 2/targetver.h
+	new file:   if-else 1/ReadMe.txt
+	new file:   if-else 1/if-else 1.cpp
+	new file:   if-else 1/if-else 1.vcxproj
+	new file:   if-else 1/if-else 1.vcxproj.filters
+	new file:   if-else 1/stdafx.cpp
+	new file:   if-else 1/stdafx.h
+	new file:   if-else 1/targetver.h
+	new file:   sanmu yunsuan1/ReadMe.txt
+	new file:   sanmu yunsuan1/sanmu yunsuan1.cpp
+	new file:   sanmu yunsuan1/sanmu yunsuan1.vcxproj
+	new file:   sanmu yunsuan1/sanmu yunsuan1.vcxproj.filters
+	new file:   sanmu yunsuan1/stdafx.cpp
+	new file:   sanmu yunsuan1/stdafx.h
+	new file:   sanmu yunsuan1/targetver.h
+	new file:   switch  1/ReadMe.txt
+	new file:   switch  1/stdafx.cpp
+	new file:   switch  1/stdafx.h
+	new file:   switch  1/switch  1.cpp
+	new file:   switch  1/switch  1.vcxproj
+	new file:   switch  1/switch  1.vcxproj.filters
+	new file:   switch  1/switch  1.vcxproj.user
+	new file:   switch  1/targetver.h
+	new file:   switch 1/ReadMe.txt
+	new file:   switch 1/stdafx.cpp
+	new file:   switch 1/stdafx.h
+	new file:   switch 1/switch 1.cpp
+	new file:   switch 1/switch 1.vcxproj
+	new file:   switch 1/switch 1.vcxproj.filters
+	new file:   switch 1/targetver.h
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	1.txt
+
