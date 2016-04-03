@@ -11,17 +11,19 @@ int main()
 	while (b++ < 9)
 	{
 		a = 1;
+		int c = 10 - b;
+		while (a<c)
+		{
+			printf("       ");
+			a++;
+		}
+		a = 1;
 		while (a <= b)
 		{
-			printf("%2d*%2d=%2d ", a, b, a*b);
+			printf("%d*%d=%2d ", a, b, a*b);
 			a++;
 		}
-		printf("\r");
-		while (a<10)
-		{
-			printf("         ");
-			a++;
-		}
+		
 		printf("\n");
 	}
 	getchar();

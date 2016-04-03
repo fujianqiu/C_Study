@@ -1,0 +1,13 @@
+*.mdb
+*.pdb
+*.idb
+*.exe
+*.obj
+*.pch
+*.log
+*.tlog
+*.ipch
+ipch/
+Debug/
+obj/
+Release/
