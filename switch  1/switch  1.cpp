@@ -7,7 +7,7 @@
 int main()
 {
 	int a;
-	printf("input integer number:      ");
+	printf("input integer number: ");
 	scanf("%d", &a);
 	switch (a) 
 	{
