@@ -1,3 +1,3 @@
 ﻿
 	竖着个乘法表
-![image](https://github.com/fujianqiu/C_Study/blob/master/chenfabiao%205/pic/result.png)
+1![image](https://github.com/fujianqiu/C_Study/blob/master/chenfabiao%205/pic/result.png)
