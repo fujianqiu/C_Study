@@ -6,15 +6,15 @@
 
 int main()
 {
-	int n, k;
+	long int n, k;
 	scanf("%d", &n);
 	printf("%d=",n);
-	for (k = 2; k < n / k; k++)
+	loop:for (k = 2; k < n; k++)
 		if (n%k == 0)
 		{
 			n = n / k;
 			printf("%d*",k);
-			k = 2;
+			goto loop;
 		}
 	printf("%d",n);
 	getchar();
