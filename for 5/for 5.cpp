@@ -2,55 +2,61 @@
 //
 
 #include "stdafx.h"
-
-
-int main()
+int Prime_factors(int *addr,int N)
 {
-	int n, m, k, i = 1;
-	int num_n = 0, num_m = 0;                  //题目：输入两个正整数m和n，求其最大公约数和最小公倍数。
-	int a_max, b_max;
-	int a[1000];
-	int b[1000];
-	scanf("%d%d", &n, &m);
-//	n_start = n;
-//	m_start = m;
-	for (k = 2; k < n; k++)
-		if (n%k == 0)
+	
+	int Prime_max,k,i=0;
+	for (k = 2; k < N; k++)
+	if (N%k == 0)
+	{
+		N = N / k;
+		*(addr+i) = k;
+		i++;
+		k=1;
+	}
+	*(addr + i) = N;
+	return *addr;
+}
+int findgreatest_common_factor(int a_max,int b_max)
+{
+	int a[50];
+	int b[50];
+	int num_n = 0, num_m = 0;
+	int loop = 1;
+	for (num_n = 0; num_n<=50; num_n++)
+	{
+		for (num_m = 0; num_m<=0; num_m++)
 		{
-			n = n / k;
-			printf("%d*", k);
-			a[num_n] = k;
-			num_n++;
-			k = 1;
-		}
-	a_max = num_n + 1;
-	a[a_max] = n;
-	printf("%d\n", n);
-	for (k = 2; k < m; k++)         //待修改
-		if (m%k == 0)
-		{
-			m = m / k;
-			printf("%d*", k);
-			b[num_m] = k;
-			num_m++;
-			k = 1;
-		}
-	b_max = num_m + 1;
-	b[b_max] = m;
-	printf("%d\n", m);
-	for (num_n = 0; num_n <= a_max; num_n++)
-		for (num_m = 0; num_m <= b_max; num_m++)
 			if (a[num_n] == b[num_m])
 			{
 				printf("最小公因数：%d\n", b[num_m]);         //合并2个数组a[n] b[m] ,
-				goto loop;
+				loop = 1;
+				break;
 			}
-//	if (n_start >= b_start)
-//	{
-//		for (i == 1;;i++)
-//			if()
-//	}
-loop:printf("%d %d", a[a_max],b[b_max]);
+		}
+		if (loop)
+			break;                                            //题目：输入两个正整数m和n，求其最大公约数和最小公倍数。
+	}
+	return b[num_m];
+}
+
+int main()
+{
+	int n, m;
+	printf("请输入两个[1,2147483647]内的整数\n");
+	scanf("%d%d", &n, &m);
+	if (n < 0 || m < 0 || n>2147483647 | m>2147483647)
+	{
+		printf("error");
+	}
+	else
+	{
+		int c[50];
+		int d[50];
+		Prime_factors(n);
+		Prime_factors(m);
+	}
+
 	getchar();
 	getchar();
     return 0;

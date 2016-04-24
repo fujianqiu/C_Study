@@ -6,7 +6,7 @@
 
 int main()
 {
-	long int n, k;
+	int n, k;
 	scanf("%d", &n);
 	printf("%d=",n);
 	loop:for (k = 2; k < n; k++)
