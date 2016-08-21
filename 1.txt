@@ -107,8 +107,8 @@ Changes to be committed:
 	new file:   switch 1/switch 1.vcxproj.filters
 	new file:   switch 1/targetver.h
 
-Untracked files:
+iddUntracked files:
   (use "git add <file>..." to include in what will be committed)
-
+lxg
 	1.txt
 
