@@ -2,6 +2,7 @@
 #include "ge.h"
 #include<windows.h>
 
+
 void cls(void)
 {
 	COORD coordScreen = { 0, 0 };    /* here's where we'll home the
@@ -36,24 +37,59 @@ void cls(void)
 	bSuccess = SetConsoleCursorPosition(hConsole, coordScreen);
 	return;
 }
-bool clean_canvas(char *canvas, unsigned x, unsigned y)
+bool clean_canvas(PBitmapInfo pBitmapHandle)
 {
-	if (canvas == NULL)
+	if (pBitmapHandle == NULL && pBitmapHandle->frameBuf ==NULL)
 		return false;
-	memset(canvas, ' ', x*y);
+	memset(pBitmapHandle->frameBuf, ' ', pBitmapHandle->width*pBitmapHandle->height*pBitmapHandle->pointSize);
 	return true;
 }
-bool display_canvas(char canvas[][CANVAS_Y], unsigned x, unsigned y)
+
+bool display_canvas(PBitmapInfo pBitmapHandle)
 {
 	int i, j;
-	if (canvas == NULL)
+	if (pBitmapHandle == NULL)
 		return false;
 	cls();
-	for (i = 0; i < y; i++)
+	for (i = 0; i < pBitmapHandle->height; i++)
 	{
-		for (j = 0; j < x; j++)
-			printf("%c", canvas[j][i]);
+		for (j = 0; j < pBitmapHandle->width; j++)
+			printf("%c", pBitmapHandle->frameBuf[j*pBitmapHandle->pointSize + pBitmapHandle->width * i*pBitmapHandle->pointSize]);
 		printf("\n");
 	}
 	return true;
+}
+int get_point_size(void )
+{
+	return 1;
+}
+PBitmapInfo init_ge(unsigned width, unsigned height)
+{
+	CONSOLE_CURSOR_INFO cci;
+	PBitmapInfo geHandle = NULL;
+	cci.bVisible = FALSE;
+	cci.dwSize = sizeof(cci);
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCursorInfo(handle, &cci);
+	if (width*height == 0)
+		return NULL;
+	geHandle = (PBitmapInfo)malloc(sizeof(BitmapInfo));
+	if (geHandle)
+	{
+		geHandle->pointSize = get_point_size();
+		geHandle->frameBuf = (unsigned char *)malloc(width * height*geHandle->pointSize);
+		if (geHandle->frameBuf)
+		{
+			geHandle->height = height;
+			geHandle->width = width;
+			clean_canvas(geHandle);
+			return geHandle;
+		}
+		else
+		{
+			free(geHandle);
+			return NULL;
+		}
+	}
+	return NULL;
 }

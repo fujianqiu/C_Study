@@ -1,11 +1,17 @@
 #ifndef __GE_H__
 #define __GE_H__
 
-#define CANVAS_X 60
-#define CANVAS_Y 20
-bool clean_canvas(char *canvas, unsigned x, unsigned y);
-bool display_canvas(char canvas[][CANVAS_Y], unsigned x, unsigned y);
 
+typedef struct
+{
+	int width;
+	int height;
+	int pointSize;
+	unsigned char *frameBuf;
+}BitmapInfo, *PBitmapInfo;
+
+bool clean_canvas(PBitmapInfo pBitmapHandle);
+bool display_canvas(PBitmapInfo pBitmapHandle);
 void cls(void);
-
+PBitmapInfo init_ge(unsigned width, unsigned height);
 #endif

@@ -3,15 +3,36 @@
 #include "stdafx.h"
 #include "malloc.h"
 #include "snake.h"
-#include<windows.h>
+#include <windows.h>
 #include "wall.h"
 #include "public.h"
 #include "check.h"
 #include "food.h"
 #include "time.h"
 #include "ge.h"
-
-int ak = 0;
+#define CANVAS_X 60
+#define CANVAS_Y 20
+#define FOOD_NUM  10
+unsigned int  get_direction_kg()
+{
+	if (GetAsyncKeyState(VK_NUMPAD4))
+	{
+		return VK_NUMPAD4;
+	}
+	if (GetAsyncKeyState(VK_NUMPAD8))
+	{
+		return VK_NUMPAD8;
+	}
+	if (GetAsyncKeyState(VK_NUMPAD6))
+	{
+		return VK_NUMPAD6;
+	}
+	if (GetAsyncKeyState(VK_NUMPAD5))
+	{
+		return VK_NUMPAD5;
+	}
+	return 0;
+}
 unsigned int  get_direction()
 {
 	if (GetAsyncKeyState(VK_LEFT))
@@ -33,137 +54,97 @@ unsigned int  get_direction()
 	}
 	return 0;
 }
-coordinate move(snake *snake_head, unsigned x, unsigned y, unsigned int direction, char canvas[][CANVAS_Y])
+unsigned get_food_num(void)
 {
-	coordinate xy = {-1,-1};
-	if ((snake_head == NULL) || (canvas == NULL))
-		return xy;
-	static unsigned int lastKey = 0;
-	int temp;
-	if (direction == 0)
-		direction = lastKey;
-	else if ((direction == VK_LEFT) && (lastKey == VK_RIGHT))
-	{
-		direction = VK_RIGHT;
-	}
-	else if ((direction == VK_RIGHT) && (lastKey == VK_LEFT))
-	{
-		direction = VK_LEFT;
-	}
-	else if ((direction == VK_UP) && (lastKey == VK_DOWN))
-	{
-		direction = VK_DOWN;
-	}
-	else if ((direction == VK_DOWN) && (lastKey == VK_UP))
-	{
-		direction = VK_UP;
-	}
-	else
-		lastKey = direction;
-	xy.x = snake_head->tail->x;
-	xy.y = snake_head->tail->y;
-	canvas[xy.x][xy.y] = ' ';
-	snake_body_move(snake_head, direction);
-	return xy;
+	return FOOD_NUM;
 }
-bool updata_wall(char canvas[][CANVAS_Y], wall *wall_head)
-{
-	brick *p;
-	if ((canvas == NULL) || (wall_head == NULL))
-		return false;
-	p = wall_head->head;
-	while (p)
-	{
-		canvas[p->x][p->y] = p->show;
-		p = p->next;
-	}
-	return true;
-}
-bool updata_snake(char canvas[][CANVAS_Y], snake *snake_head)
-{
-	snake_node *p;
-	if ((canvas == NULL) || (snake_head == NULL))
-		return false;
-	p = snake_head->head;
-	while (p)
-	{
-		canvas[p->x][p->y] = p->show;
-		p = p->next;
-	}
-	return true;
-}
-food *updata_food(snake *snake_head, wall *wall_head, food *all_food, char canvas[][CANVAS_Y])
-{
-	int temp;
-	coordinate xy;
-	if ((snake_head == NULL) || (wall_head == NULL))
-		return NULL;
-	if (ak ==1)
-		return all_food;
-	do
-	{
-		xy.x = rand() % CANVAS_X;
-		xy.y = rand() % CANVAS_Y;
-		temp = check_penalty_box(snake_head, wall_head, &xy);
-	} while (temp);
-	all_food=Insfood(all_food, xy);
-	canvas[all_food->coord.x][all_food->coord.y] = all_food->show;
-	ak = 1;
-	return all_food;
-}
-
-
 int _tmain(int argc, _TCHAR* argv[])
-{
+{ 
+	int mk;
 	int food_or_not;
 	int pena_or_not;
 	strong_wall *wall_head;
 	snake *snake_head;
+	snake *snake_head_kg;
 	snake_node *eq;
-	food *all_food=NULL;
+	food_list *all_food=NULL;
 	coordinate last_xy;
+	coordinate last_xy_kg;
 	unsigned int  direct;
-	char canvas[CANVAS_X][CANVAS_Y];
-	CONSOLE_CURSOR_INFO cci;
-	cci.bVisible = FALSE;
-	cci.dwSize = sizeof(cci);
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleCursorInfo(handle, &cci);
-	/*********************************************************/
-	clean_canvas((char *)canvas, CANVAS_X, CANVAS_Y);
+	unsigned int  direct_kg;
+	PBitmapInfo geHandle = NULL;
+	CollisionDtectionEngineHandle *CDEHandle = NULL;
+
+	geHandle = init_ge(CANVAS_X, CANVAS_Y);
 	wall_head = get_wall_place(CANVAS_X, CANVAS_Y);
-	updata_wall(canvas, wall_head);
-	snake_head=creat_snake(CANVAS_X, CANVAS_Y);
-	updata_snake(canvas, snake_head);
-	display_canvas(canvas, CANVAS_X, CANVAS_Y);
+	snake_head = creat_snake(CANVAS_X / 2, CANVAS_Y / 2);
+	snake_head_kg = creat_snake(CANVAS_X /3, CANVAS_Y /3);
+	get_empty_food_list(&all_food);
+	register_snake_penalt(snake_head, (CollisionDtectionList *)wall_head);
+	register_snake_food(snake_head, (CollisionDtectionList *)all_food);
+	register_snake_penalt(snake_head_kg, (CollisionDtectionList *)wall_head);
+	register_snake_food(snake_head_kg, (CollisionDtectionList *)all_food);
+	register_collision_detection_list(snake_head->penaltCDEHandle, (CollisionDtectionList *)snake_head_kg);
+	register_food_penalt(all_food, (CollisionDtectionList *)wall_head);
+	register_food_penalt(all_food, (CollisionDtectionList *)snake_head);
+	register_food_penalt(all_food, (CollisionDtectionList *)snake_head_kg);
+	/*********************************************************/
+	updata_wall(geHandle, wall_head);
 	/*********************************************************/
 	do
 	{
 		direct = get_direction();
-		last_xy=move(snake_head, CANVAS_X, CANVAS_Y, direct, canvas);
-		all_food=updata_food(snake_head, wall_head, all_food, canvas);
+		direct_kg = get_direction_kg();
+
+		mk = create_food(geHandle,  all_food, get_food_num());
+		if (mk == -1)
+			break;
+		last_xy = snake_move(snake_head, direct, geHandle);
+		last_xy_kg = snake_move_kg(snake_head_kg, direct_kg, geHandle);
 		coordinate xy = snake_head_coord(snake_head);
+		coordinate xy_kg = snake_head_coord(snake_head_kg);
 		if (xy.x == -1)
 			break;
-		pena_or_not= check_penalty_box(snake_head, wall_head, &xy);
-		if (pena_or_not)
+		if (xy_kg.x == -1)
 			break;
-		food_or_not = check_food(&xy, all_food);
-		if (food_or_not)
+		if (DoesSnakeIntoForbiddenZone(snake_head))
 		{
-			eq=make_snake_node(last_xy.x, last_xy.y, '*');
-			InsLast_snake(snake_head, eq);
-			free(all_food);
-			ak =0;
+			break;
 		}
-		updata_snake(canvas, snake_head);
-		display_canvas(canvas, CANVAS_X, CANVAS_Y);
-		Sleep(100);
+		if (DoesSnakeIntoForbiddenZone(snake_head_kg))
+		{
+			break;
+		}
+		if (DoesSnakeEatFood(snake_head))
+		{
+			snake_eat_food(snake_head, last_xy);
+			free_food(all_food, xy);
+		}
+		if (DoesSnakeEatFood(snake_head_kg))
+		{
+			snake_eat_food(snake_head_kg, last_xy_kg);
+			free_food(all_food, xy_kg);
+		}
+		clean_canvas(geHandle);
+		updata_have_walk_place(geHandle, last_xy);
+		updata_wall(geHandle, wall_head);
+		updata_snake(geHandle, snake_head);
+		updata_snake_kg(geHandle, snake_head_kg);
+		updata_food(geHandle, all_food);
+		display_canvas(geHandle);
+		if (500 - snake_length(snake_head)*snake_length(snake_head_kg) > 50)
+			Sleep(500 - snake_length(snake_head)*snake_length(snake_head_kg));
+		else
+			Sleep(50);
 	} while (1);
 	/*********************************************************/
+	free(geHandle->frameBuf);
+	free(geHandle);
 	destroy_wall(wall_head);
+	destroy_snake(snake_head_kg);
 	destroy_snake(snake_head);
 	printf("GAME OVER\n");
+
 	getchar();
 	return 0;
 }

@@ -25,7 +25,7 @@ bool InsFirst(strong_wall *wall_head, brick *p)
 		++(wall_head->number);
 		return true;
 	}
-	p->next = wall_head->head;
+	p->node.next= &wall_head->head->node;
 	wall_head->head = p;
 	++(wall_head->number);
 	return true;
@@ -37,7 +37,7 @@ brick *get_nbrick(strong_wall *wall_head, unsigned int num)
 	brick *head = wall_head->head;
 	for (int temp = 0; temp < num-1; temp++)
 	{
-		head = head->next;
+		head = (brick *)head->node.next;
 	}
 	return head;
 }
@@ -47,10 +47,10 @@ brick *make_brick(int x,int y,char show)
 	p = (brick *)malloc(sizeof(brick));
 	if (p == NULL)
 		return NULL;
-	p->next = NULL;
+	p->node.next = NULL;
 	p->show = show;
-	p->x = x;
-	p->y = y;
+	p->node.coord.x = x;
+	p->node.coord.y = y;
 	return p;
 }
 wall *get_wall_place(unsigned x, unsigned y)
@@ -91,10 +91,10 @@ wall *get_wall_place(unsigned x, unsigned y)
 }
 void visit_wall(wall *wall_head)
 {
-	brick *p;
+	node_t *p;
 	if (wall_head == NULL)
 		return;
-	p = wall_head->head;
+	p = &wall_head->head->node;
 	if (wall_head == NULL)
 		return;
 	while (p)
@@ -104,10 +104,10 @@ void visit_wall(wall *wall_head)
 }
 void destroy_wall(wall *wall_head)
 {
-	brick *p, *p1;
+	node_t *p, *p1;
 	if ((wall_head == NULL) || (wall_head->head == NULL))
 		return;
-	p = wall_head->head;
+	p = &wall_head->head->node;
 	free(wall_head);
 	while (p)
 	{
@@ -115,4 +115,19 @@ void destroy_wall(wall *wall_head)
 		p = p->next;
 		free(p1);
 	}
+}
+
+bool updata_wall(PBitmapInfo pBitmapHandle, wall *wall_head)
+{
+	node_t *p;
+	if ((pBitmapHandle == NULL) || (pBitmapHandle->frameBuf == NULL))
+		return false;
+	p = &wall_head->head->node;
+	while (p)
+	{
+		if (p->coord.y < pBitmapHandle->height &&p->coord.x < pBitmapHandle->width)
+			pBitmapHandle->frameBuf[p->coord.y*pBitmapHandle->width*pBitmapHandle->pointSize + p->coord.x * pBitmapHandle->pointSize] = ((brick *)p)->show;
+		p = p->next;
+	}
+	return true;
 }
