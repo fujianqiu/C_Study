@@ -1,7 +1,3 @@
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
 
 	new file:   .gitignore
 	modified:   .vs/TestForC/v14/.suo
