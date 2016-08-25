@@ -5,9 +5,11 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game_snake", "game_snake\game_snake.vcxproj", "{B77DD8F6-BA00-40B7-9823-03EA447E66F1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Data_Structure", "Data_Structure\Data_Structure.vcxproj", "{3413FD5C-6ADC-4651-8FC5-3D2A15A3A926}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "labyrinth_test", "labyrinth_test\labyrinth_test.vcxproj", "{76CC6228-4B6C-4931-A862-E54667A83FAA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Binary_Tree", "Binary_Tree\Binary_Tree.vcxproj", "{EC72C76C-D4D9-4E4C-AC91-690BA3576A09}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "abcd", "abcd\abcd.vcxproj", "{17A47F7F-2FF7-4A5E-AE5F-18DB51A621D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{B77DD8F6-BA00-40B7-9823-03EA447E66F1}.Debug|Win32.Build.0 = Debug|Win32
 		{B77DD8F6-BA00-40B7-9823-03EA447E66F1}.Release|Win32.ActiveCfg = Release|Win32
 		{B77DD8F6-BA00-40B7-9823-03EA447E66F1}.Release|Win32.Build.0 = Release|Win32
-		{3413FD5C-6ADC-4651-8FC5-3D2A15A3A926}.Debug|Win32.ActiveCfg = Debug|Win32
-		{3413FD5C-6ADC-4651-8FC5-3D2A15A3A926}.Debug|Win32.Build.0 = Debug|Win32
-		{3413FD5C-6ADC-4651-8FC5-3D2A15A3A926}.Release|Win32.ActiveCfg = Release|Win32
-		{3413FD5C-6ADC-4651-8FC5-3D2A15A3A926}.Release|Win32.Build.0 = Release|Win32
 		{76CC6228-4B6C-4931-A862-E54667A83FAA}.Debug|Win32.ActiveCfg = Debug|Win32
 		{76CC6228-4B6C-4931-A862-E54667A83FAA}.Debug|Win32.Build.0 = Debug|Win32
 		{76CC6228-4B6C-4931-A862-E54667A83FAA}.Release|Win32.ActiveCfg = Release|Win32
 		{76CC6228-4B6C-4931-A862-E54667A83FAA}.Release|Win32.Build.0 = Release|Win32
+		{EC72C76C-D4D9-4E4C-AC91-690BA3576A09}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EC72C76C-D4D9-4E4C-AC91-690BA3576A09}.Debug|Win32.Build.0 = Debug|Win32
+		{EC72C76C-D4D9-4E4C-AC91-690BA3576A09}.Release|Win32.ActiveCfg = Release|Win32
+		{EC72C76C-D4D9-4E4C-AC91-690BA3576A09}.Release|Win32.Build.0 = Release|Win32
+		{17A47F7F-2FF7-4A5E-AE5F-18DB51A621D1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{17A47F7F-2FF7-4A5E-AE5F-18DB51A621D1}.Debug|Win32.Build.0 = Debug|Win32
+		{17A47F7F-2FF7-4A5E-AE5F-18DB51A621D1}.Release|Win32.ActiveCfg = Release|Win32
+		{17A47F7F-2FF7-4A5E-AE5F-18DB51A621D1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
