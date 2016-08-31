@@ -32,7 +32,7 @@ char Priority(char a, char b)
 	case '(':j = 4; break;
 	case ')':j = 5; break;
 	case '=':j = 6; break;
-	default:exit(1);
+	default:return '.';
 	}
 	switch (a)
 	{
@@ -43,11 +43,11 @@ char Priority(char a, char b)
 	case '(':i = 4; break;
 	case ')':i = 5; break;
 	case '=':i = 6; break;
-	default:exit(1);
+	default:return '.';
 	}
 	return priority[i][j];
 }
-int change(int a,int b,char c)
+int calculat(int a,int b,char c)
 {
 	if (c == '+')
 		return a + b;
@@ -58,7 +58,7 @@ int change(int a,int b,char c)
 	if (c == '/')
 		return a / b;
 }
-void run(Stack_Sq *OPED, Stack_Sq *OPER, node *r)//OPED  运算数  OPER  运算符  "(0-9)+5#"
+bool run(Stack_Sq *OPED, Stack_Sq *OPER, node *r)//OPED  运算数  OPER  运算符  "(0-9)+5#"
 {
 	int i = 0;
 	int a, b;
@@ -66,7 +66,7 @@ void run(Stack_Sq *OPED, Stack_Sq *OPER, node *r)//OPED  运算数  OPER  运算符  "
 	stack_elem e;
 	char ch;
 	if (r == NULL)
-		return;
+		return false;
 	StackEmpty(OPED);
 	StackEmpty(OPER);
 	Push(OPER, '=');
@@ -88,12 +88,13 @@ void run(Stack_Sq *OPED, Stack_Sq *OPER, node *r)//OPED  运算数  OPER  运算符  "
 				c = Pop(OPER);
  				a = Pop(OPED);
 				b = Pop(OPED);
-				Push(OPED, change(b, a, c));
+				Push(OPED, calculat(b, a, c));
 				break;
+			default:return false;
 			}
 		}
 	}
-	return;
+	return true;
 }
 #if 1
 int mkint(char *c,int len)
@@ -129,10 +130,7 @@ node *char_int(char *r, int len)
 		if (r[i] >= '0'&& r[i] <= '9')
 		{
 			if (i > 0 && r[i - 1] == '/'&&r[i] == '0')
-			{
-				printf("ERROR\n");
 				return NULL;
-			}
 			j = 1;
 			temp = r + i++;
 			while (r[i] >= '0'&& r[i] <= '9')
@@ -144,6 +142,10 @@ node *char_int(char *r, int len)
 		}
 		if (!r[i])
 			break;
+		if (i > 0 && (r[i - 1] == '+' || r[i - 1] == '-' || r[i - 1] == '*' || r[i - 1] == '/' || r[i - 1] == '=') && (r[i] != '(' && (r[i]< '0' || r[i] >'9')))
+			return NULL;
+		if (i > 0 && (r[i - 1] == '(') && (r[i] != '-' && (r[i]< '0' || r[i] >'9')))
+			return NULL;
 		if (i > 0 && r[i - 1] == '('&&r[i] == '-')
 		{
 			a[k].value = 0;
@@ -159,19 +161,26 @@ node *char_int(char *r, int len)
 int _tmain(int argc, _TCHAR* argv[])
 {
 	node *a;
-	//char r[] = "(-9)+5*(-5)/5+(-6+8)*5+3=";
-	//char r[] = "1/0=";
-	//char r[] = "48*59-48/24+(-8)/4=";
-	char r[] = "(-9)+5*(-5)/5+(-6+8)*5+3+48*59-48/24+(-8)/448*59-48/24+(-8)/448*59-48/24+(-8)/4-2000=";
+	Stack_Sq *OPED, *OPER;
+	char r[] = "(8-9)+5*(-5)/5+(-6+8)*5+3=";
+	//char r[] = "()(";
+	//char r[] = "48*59-48/*4=";
+	//char r[] = "48*59-48/*4=";
 	a = char_int(r, strlen(r));
-	if (a)
+	while (a)
 	{
-		Stack_Sq *OPED, *OPER;
 		CreateEmptyStack(&OPED);
 		CreateEmptyStack(&OPER);
-		run(OPED, OPER, a);
+		if (!run(OPED, OPER, a))
+			break;
+		if (!StackEmpty(OPER) || StackEmpty(OPED))
+			break;
 		printf("%d", GetTop(OPED));
+		free(a);
+		getchar();
+		return 0;
 	}
+	printf("ERROR\n");
 	free(a);
 	getchar();
 	return 0;

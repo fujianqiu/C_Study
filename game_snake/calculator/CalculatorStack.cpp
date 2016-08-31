@@ -51,7 +51,7 @@ bool ClearStack(Stack_Sq *stack)
 bool StackEmpty(Stack_Sq *stack)
 {
 	if ((stack == NULL) || (stack->base == NULL))
-		exit(1);
+		return false;
 	if (stack->base == stack->top)
 		return true;
 	return false;
